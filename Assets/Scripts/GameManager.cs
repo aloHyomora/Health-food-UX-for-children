@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [Space]
     [Header("Game Variables")]
     [SerializeField] float timeLimit = 60f;
+    public float currentTime;
     [SerializeField] int playerhp = 5;
     [SerializeField] int score = 0;
     
@@ -19,10 +20,15 @@ public class GameManager : MonoBehaviour
         if(Instance == null) Instance = this;
     }
 
+    private void Start()
+    {
+        StartCoroutine(GameRoutine());
+    }
+
     IEnumerator GameRoutine()
     {
         // TODO: 메인 루틴 코드 추가
-        // StartCoroutine(ObjectSpawnManager.Instance.SpawnObjects());
+        StartCoroutine(ObjectSpawnManager.Instance.SpawnObjects());
         // StartCoroutine(UIManager.Instance.TimerRoutine());
         
         yield return null;

@@ -6302,7 +6302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 20
-  currentTime: 60
+  currentTime: 10
   isPaused: 0
   playerHp: 10
   score: 0

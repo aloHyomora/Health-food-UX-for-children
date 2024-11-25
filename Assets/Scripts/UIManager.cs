@@ -23,13 +23,7 @@ public class UIManager : MonoBehaviour
     {
         if(Instance == null) Instance = this;
     }
-
-    private void Start()
-    {
-        Init();
-    }
-
-    void Init()
+    public void Init()
     {
         GameManager.Instance.currentTime = GameManager.Instance.timeLimit;
         timeSlider.maxValue = GameManager.Instance.timeLimit;

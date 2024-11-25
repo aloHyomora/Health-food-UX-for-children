@@ -6,8 +6,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform player;
+    public static PlayerController Instance;
     
+    public Transform player; 
+    
+    private void Awake()
+    {
+        if(Instance == null) Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +25,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: 태블릿 Touch Input을 Canvas 상의 위치로 반영
-        // 임시로 변경
-        float horizontal = Input.GetAxis("Horizontal");
-        // float vertical = Input.GetAxis("Vertical");
+        if (!GameManager.Instance.isPaused)
+        {
+            // TODO: 태블릿 Touch Input을 Canvas 상의 위치로 반영
+            float horizontal = Input.GetAxis("Horizontal");
 
-        Vector2 position = player.position;
-        position.x = position.x + 500f * horizontal * Time.deltaTime;
-        player.position = position;
+            Vector2 position = player.position;
+            position.x = position.x + 500f * horizontal * Time.deltaTime;
+            player.position = position;
+        }
     }
 
     

@@ -12,8 +12,13 @@ public class GameManager : MonoBehaviour
     [Header("Game Variables")]
     public float timeLimit = 60f;
     public float currentTime;
-    [SerializeField] int playerhp = 5;
-    [SerializeField] int score = 0;
+    public bool isPaused = false;
+    
+    [Header("GamePlay Information")]
+    public int playerHp = 5;
+    public int score = 0;
+    public int level = 1;
+    public int coin = 0;
     
     private void Awake()
     {
@@ -23,7 +28,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(GameRoutine());
-        
     }
 
     IEnumerator GameRoutine()
@@ -34,5 +38,34 @@ public class GameManager : MonoBehaviour
         
         yield return null;
     }
-    
+
+    public void ProcessingFoodCollision(Object food)
+    {
+        // 정보 업데이트
+        switch (food.objectType)
+        {
+            case Object.ObjectType.WellbeingFood:
+                score += food.scoreValue;
+                coin += food.coinValue;
+                
+                UIManager.Instance.ShowFloatingScoreUI(food.scoreValue);
+                break;
+            
+            case Object.ObjectType.JunkFood:
+                playerHp--;
+                break;
+        }
+        
+        UIManager.Instance.UpdateText();
+    }
+
+
+    public void Pause()
+    {
+        isPaused = true;
+    }
+    public void Play()
+    {
+        isPaused = false;
+    }
 }

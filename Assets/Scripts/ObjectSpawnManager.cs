@@ -29,6 +29,9 @@ public class ObjectSpawnManager : MonoBehaviour
     {
         while (GameManager.Instance.currentTime >= 0)
         {
+            // isPause가 true이면 여기서 대기
+            yield return new WaitWhile(() => GameManager.Instance.isPaused);
+            
             Vector3 spawnOffset = new Vector3(Random.Range(-_canvasSize.x / 2, _canvasSize.x / 2), 100, 0);
             Instantiate(objectPrefabs[Random.Range(0, 4)], spawnTransform.position + spawnOffset, quaternion.identity,
                 spawnTransform);

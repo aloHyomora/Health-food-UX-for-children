@@ -31,7 +31,6 @@ public class Object : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"플레이어: {transform.name} 획득!");
             // TODO: Food 종류에 따른 이벤트(점수 득실점, 코인 획득, 체력 증감)
             GameManager.Instance.ProcessingFoodCollision(this);
             
@@ -39,8 +38,6 @@ public class Object : MonoBehaviour
         }
         else if (other.CompareTag("Floor"))
         {
-            Debug.Log("바닥 충돌");
-            
             
             Destroy(gameObject);
         }

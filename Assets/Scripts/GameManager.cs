@@ -53,12 +53,14 @@ public class GameManager : MonoBehaviour
             case Object.ObjectType.WellbeingFood:
                 score += food.scoreValue;
                 coin += food.coinValue;
-                
+
+                PlayerController.Instance.StartSpriteSwitch(1);
                 UIManager.Instance.ShowFloatingScoreUI(food.scoreValue);
                 break;
             
             case Object.ObjectType.JunkFood:
                 playerHp--;
+                PlayerController.Instance.StartSpriteSwitch(2);
                 break;
         }
         

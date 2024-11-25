@@ -9664,6 +9664,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1758520952}
+  playerImage: {fileID: 1758520953}
+  sprites:
+  - {fileID: 21300000, guid: 037da781f89f23f4b8f3702a4b2d4ce0, type: 3}
+  - {fileID: 21300000, guid: 1a01eb51f081e2d4f80eb9d4db6f09f1, type: 3}
+  - {fileID: 21300000, guid: f4564a0502fffb04e8e1a38d85c6fb34, type: 3}
 --- !u!1 &2021867756
 GameObject:
   m_ObjectHideFlags: 0

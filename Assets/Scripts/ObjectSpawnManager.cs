@@ -33,7 +33,7 @@ public class ObjectSpawnManager : MonoBehaviour
             yield return new WaitWhile(() => GameManager.Instance.isPaused);
             
             Vector3 spawnOffset = new Vector3(Random.Range(-_canvasSize.x / 2, _canvasSize.x / 2), 100, 0);
-            Instantiate(objectPrefabs[Random.Range(0, 4)], spawnTransform.position + spawnOffset, quaternion.identity,
+            Instantiate(objectPrefabs[Random.Range(0, objectPrefabs.Length)], spawnTransform.position + spawnOffset, quaternion.identity,
                 spawnTransform);
             yield return new WaitForSeconds(Random.Range(0.8f, 1.2f));
         }

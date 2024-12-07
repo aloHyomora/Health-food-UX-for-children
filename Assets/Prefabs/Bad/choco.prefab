@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4576742569509768075}
   - component: {fileID: -6472483965203928512}
   m_Layer: 5
-  m_Name: cake
+  m_Name: choco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,15 +30,15 @@ RectTransform:
   m_GameObject: {fileID: 3525946534354425991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
+  m_SizeDelta: {x: 200, y: 281.0219}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5655664880370466646
 CanvasRenderer:
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 66001a5a00203448e8fc69f2fd752da0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e9622155d598a74a94db861d0725308, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -93,6 +93,8 @@ MonoBehaviour:
   scoreValue: 1
   coinValue: 0
   objectType: 0
+  rotationSpeed: 4
+  moveSpeed: 500
 --- !u!65 &4576742569509768075
 BoxCollider:
   m_ObjectHideFlags: 0

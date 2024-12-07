@@ -4,16 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using DG.Tweening;
-public class Object : MonoBehaviour
+public class FoodObject : MonoBehaviour
 {
     public int scoreValue;
     public int coinValue;
     public ObjectType objectType;
-    public enum ObjectType
-    {
-        JunkFood,
-        WellbeingFood
-    }
+    
 
     [Header("Rotation & Movement")]
     public float rotationSpeed = 4f;
@@ -53,3 +49,8 @@ public class Object : MonoBehaviour
         }
     }
 }
+public enum ObjectType
+    {
+        JunkFood,
+        WellbeingFood
+    }

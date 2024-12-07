@@ -8113,7 +8113,7 @@ GameObject:
   - component: {fileID: 1602680262}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9669,6 +9669,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 037da781f89f23f4b8f3702a4b2d4ce0, type: 3}
   - {fileID: 21300000, guid: 1a01eb51f081e2d4f80eb9d4db6f09f1, type: 3}
   - {fileID: 21300000, guid: f4564a0502fffb04e8e1a38d85c6fb34, type: 3}
+  moveSpeed: 500
 --- !u!1 &2021867756
 GameObject:
   m_ObjectHideFlags: 0

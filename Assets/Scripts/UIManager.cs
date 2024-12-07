@@ -57,8 +57,11 @@ public class UIManager : MonoBehaviour
 
         float floatingTime = 0.5f; 
         GameObject ui = Instantiate(floatingScorePrefab, playerPos, Quaternion.identity, canvasTransform);
+        TextMeshProUGUI textMesh = ui.GetComponent<TextMeshProUGUI>();
+        textMesh.text = $"+{score}P";
+
         ui.transform.DOMoveY(500f,floatingTime);
-        ui.GetComponent<TextMeshProUGUI>().DOFade(0f, floatingTime).OnComplete(() =>
+        textMesh.DOFade(0f, floatingTime).OnComplete(() =>
         {
             Destroy(ui);
         });

@@ -45,22 +45,27 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-    public void ProcessingFoodCollision(Object food)
+    public void ProcessingFoodCollision(FoodObject food)
     {
-        // 정보 업데이트
+        // 정�� 업데이트
         switch (food.objectType)
         {
-            case Object.ObjectType.WellbeingFood:
+            case ObjectType.WellbeingFood:
                 score += food.scoreValue;
                 coin += food.coinValue;
 
-                PlayerController.Instance.StartSpriteSwitch(1);
+                PlayerController.Instance.StartSpriteSwitch(food.objectType);
                 UIManager.Instance.ShowFloatingScoreUI(food.scoreValue);
                 break;
             
-            case Object.ObjectType.JunkFood:
+            case ObjectType.JunkFood:
                 playerHp--;
-                PlayerController.Instance.StartSpriteSwitch(2);
+                PlayerController.Instance.StartSpriteSwitch(food.objectType);
+                // HP가 0이 되면 게임 오버
+                if (playerHp <= 0)
+                {
+                    GameOver();
+                }
                 break;
         }
         
@@ -69,11 +74,15 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        // play 정보 리셋
+        // 게임 상태 초기화
         playerHp = 10;
         score = 0;
         coin = 0;
+        currentTime = timeLimit;
+        isPaused = false;
         
+        // UI 초기화
+        UIManager.Instance.Init();
         UIManager.Instance.UpdateText();
     }
     
@@ -84,5 +93,18 @@ public class GameManager : MonoBehaviour
     public void Play()
     {
         isPaused = false;
+    }
+
+    public void GameOver()
+    {
+        isPaused = true;
+        
+        // 실행 중인 코루틴들 정지
+        StopAllCoroutines();
+        ObjectSpawnManager.Instance.StopAllCoroutines();
+        UIManager.Instance.StopAllCoroutines();
+        
+        // TODO: 게임오버 UI 표시
+        // TODO: 재시작 버튼 표시
     }
 }

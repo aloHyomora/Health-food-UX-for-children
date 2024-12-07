@@ -41,8 +41,8 @@ public class UIManager : MonoBehaviour
             yield return null;                                    // 다음 프레임까지 대기
         }
 
-        // 제한 시간 종료 시 추가 동작
-        Debug.Log("Time is up!");
+        // 시간 종료시 게임 오버
+        GameManager.Instance.GameOver();
     }
 
     public void UpdateText()

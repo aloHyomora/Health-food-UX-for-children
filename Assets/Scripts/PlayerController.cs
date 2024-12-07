@@ -65,27 +65,38 @@ public class PlayerController : MonoBehaviour
         rectTransform.anchoredPosition = currentPos;
     }
 
-    public void StartSpriteSwitch(int spriteIndex)
+    public void StartSpriteSwitch(ObjectType type)
     {
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine); // 기존 코루틴 중단
-        currentCoroutine = StartCoroutine(SwitchSprite(spriteIndex));
+        currentCoroutine = StartCoroutine(SwitchSprite(type));
     }
 
-    IEnumerator SwitchSprite(int spriteIndex)
+    IEnumerator SwitchSprite(ObjectType type)
     {
-        if (spriteIndex >= sprites.Count || spriteIndex < 0)
-        {
-            Debug.LogError("Invalid sprite index");
-            yield break;
+        if(type == ObjectType.WellbeingFood)
+        {            
+            // 해당 스프라이트로 변경
+            playerImage.sprite = sprites[1];
+            yield return new WaitForSeconds(0.3f);
+            playerImage.sprite = sprites[2];
+            yield return new WaitForSeconds(0.3f); 
+
+            // 기본 스프라이트로 복구 (리스트의 0번 스프라이트)
+            playerImage.sprite = sprites[0];
+            currentCoroutine = null; // 코루틴 종료 
         }
+        else if(type == ObjectType.JunkFood)
+        {
+            // 해당 스프라이트로 변경
+            playerImage.sprite = sprites[3];
+            yield return new WaitForSeconds(0.3f);
+            playerImage.sprite = sprites[4];
+            yield return new WaitForSeconds(0.3f); 
 
-        // 해당 스프라이트로 변경
-        playerImage.sprite = sprites[spriteIndex];
-        yield return new WaitForSeconds(1f); // 1초 대기
-
-        // 기본 스프라이트로 복구 (리스트의 0번 스프라이트)
-        playerImage.sprite = sprites[0];
-        currentCoroutine = null; // 코루틴 종료
+            // 기본 스프라이트로 복구 (리스트의 0번 스프라이트)
+            playerImage.sprite = sprites[0];
+            currentCoroutine = null; // 코루틴 종료
+        }
     }
 }

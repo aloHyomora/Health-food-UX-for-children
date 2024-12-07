@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
-
+using DG.Tweening;
 public class Object : MonoBehaviour
 {
     public int scoreValue;
@@ -14,14 +14,24 @@ public class Object : MonoBehaviour
         JunkFood,
         WellbeingFood
     }
-    
+
+    [Header("Rotation & Movement")]
+    public float rotationSpeed = 4f;
+    public float moveSpeed = 500f;
+    private void Awake()
+    {
+        transform.DOLocalRotate(new Vector3(0, 0, 360), rotationSpeed
+        , RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Incremental);
+    }
+
+
     // Update is called once per frame
     void Update()
     {
         if (!GameManager.Instance.isPaused)
         {
             Vector2 position = transform.position;
-            position.y = position.y - 500f * Time.deltaTime;
+            position.y = position.y - moveSpeed * Time.deltaTime;
             transform.position = position;
         }
     }

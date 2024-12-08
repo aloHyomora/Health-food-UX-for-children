@@ -29,15 +29,23 @@ public class ObjectSpawnManager : MonoBehaviour
     {
         while (GameManager.Instance.currentTime >= 0)
         {
-            // isPause가 true이면 여기서 대기
             yield return new WaitWhile(() => GameManager.Instance.isPaused);
             
             Vector3 spawnOffset = new Vector3(Random.Range(-_canvasSize.x / 2, _canvasSize.x / 2), 100, 0);
-            Instantiate(objectPrefabs[Random.Range(0, objectPrefabs.Length)], spawnTransform.position + spawnOffset, quaternion.identity,
+            Instantiate(objectPrefabs[Random.Range(0, objectPrefabs.Length)], 
+                spawnTransform.position + spawnOffset, 
+                quaternion.identity,
                 spawnTransform);
-            yield return new WaitForSeconds(Random.Range(0.8f, 1.2f));
+            
+            float waitTime = GameManager.Instance.level switch
+            {
+                1 => Random.Range(1f, 1.4f),
+                2 => Random.Range(0.7f, 0.9f),
+                3 => Random.Range(0.5f, 0.7f),
+                _ => 1f
+            };
+            
+            yield return new WaitForSeconds(waitTime);
         }
-        
-        yield return null;
     }
 }

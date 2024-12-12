@@ -158,7 +158,13 @@ public class GameManager : MonoBehaviour
                 AudioManger.Instance.PlaySfx(AudioManger.Instance.gameOverClip);
                 UIManager.Instance.ShowGameResult(1);
             }
-        }
+        }else if(playerHp <= 0)
+        {
+            AudioManger.Instance.PlaySfx(AudioManger.Instance.gameOverClip);
+            UIManager.Instance.ShowGameResult(1);
+        }       
+            
+        
         
         // TODO: 재시작 버튼 표시
     }

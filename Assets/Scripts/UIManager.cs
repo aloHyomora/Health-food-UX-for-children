@@ -40,6 +40,14 @@ public class UIManager : MonoBehaviour
         timeSlider.maxValue = GameManager.Instance.timeLimit;
         timeSlider.value = GameManager.Instance.timeLimit;
 
+        // 레벨 이미지 초기화
+        HideLevelUp();
+        if(GameManager.Instance.level > 0 && GameManager.Instance.level <= levelImages.Length)
+        {
+            var image = levelImages[GameManager.Instance.level - 1];
+            image.gameObject.SetActive(true);
+        }
+
         gameOverPanel.SetActive(false);
 
     }
@@ -119,7 +127,8 @@ public class UIManager : MonoBehaviour
         TextMeshProUGUI textMesh = ui.GetComponent<TextMeshProUGUI>();
         textMesh.text = $"+{score}P";
 
-        ui.transform.DOMoveY(500f,floatingTime);
+        ui.transform.DOMoveY(ui.transform.position.y + 200f, floatingTime);
+
         textMesh.DOFade(0.5f, floatingTime).OnComplete(() =>
         {
             Destroy(ui);
